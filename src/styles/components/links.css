@@ -1,0 +1,21 @@
+/* =========================================
+   Link Styles
+   ========================================= */
+
+/* Base link styles */
+.link {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 15px; /* Increased to 15px */
+}
+
+/* Disabled link */
+.link-disabled {
+  cursor: not-allowed;
+}
+
+/* Active link state */
+.link-active {
+  color: hsl(217.22, 91.22%, 59.80%); /* primary blue color */
+  font-weight: 500;
+}

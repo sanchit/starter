@@ -1,0 +1,65 @@
+/* =========================================
+   Grid and Layout Styles
+   ========================================= */
+
+/* Base layout classes */
+.body-base {
+  font-family: "Berkeley Mono Variable", monospace;
+  letter-spacing: 0.025em;
+}
+
+/* Main content container */
+.main-container {
+  width: 100%;
+  height: auto;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Content layout container */
+.content-container {
+  display: flex;
+  width: 100%; /* Full width on mobile */
+  flex-direction: column;
+  position: relative;
+}
+
+/* Medium screens and up */
+@media (min-width: 640px) {
+  .content-container {
+    margin-left: 230px; /* Same as sidebar width */
+    width: calc(100% - 230px); /* Ensure content doesn't overlap sidebar */
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1536px) {
+  .content-container {
+    flex-direction: row;
+    padding-right: 900px;
+  }
+}
+
+/* Main content panel */
+.content-panel {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
+  max-width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Content header */
+.content-title {
+  font-size: 1.875rem;
+  margin-top: -0.5rem;
+  color: var(--foreground);
+}
+
+.content-description {
+  margin-top: -1rem;
+  color: var(--muted-foreground);
+  font-size: 16.5px;
+}

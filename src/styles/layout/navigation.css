@@ -1,0 +1,300 @@
+/* =========================================
+   Navigation Styles
+   ========================================= */
+
+/* Main navbar */
+.navbar {
+  width: 100%;
+  height: 3.5rem; /* h-14 */
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+  background-color: var(--background);
+  border-bottom: 1px solid var(--border);
+}
+
+.navbar-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: hsl(var(--border));
+  opacity: 0.5;
+}
+
+.navbar-brand {
+  width: 230px;
+  padding-left: 1rem;
+  padding-right: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1.5rem;
+}
+
+.navbar-links {
+  display: none;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 1024px) {
+  .navbar-links {
+    display: flex;
+  }
+}
+
+/* Logo styling */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--muted-foreground);
+  fill: currentColor;
+}
+
+.logo-text {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  font-family: "Berkeley Mono Variable", monospace;
+}
+
+/* Home button styling */
+.home-button {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.375rem;
+  background-color: transparent;
+  color: var(--muted-foreground);
+  transition: all 0.2s;
+  font-weight: 500;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  background-color: hsl(var(--muted) / 0.5);
+  color: var(--foreground);
+}
+
+.home-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Section title styling */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--foreground);
+  transition: opacity 0.2s;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.section-title:hover {
+  opacity: 0.8;
+}
+
+.section-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--muted-foreground);
+}
+
+.section-text {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Berkeley Mono Variable", monospace;
+  line-height: 1;
+  margin: 0;
+}
+
+/* Next page navigation */
+.next-page {
+  margin-top: 4rem; /* mt-16 */
+  padding-top: 2rem; /* pt-8 */
+  border-top: 1px solid var(--border);
+}
+
+.next-page-link {
+  display: flex;
+  align-items: center;
+  color: var(--primary);
+  transition: color 0.2s;
+}
+
+.next-page-link:hover {
+  color: hsl(217, 90%, 60%); /* lighter blue */
+}
+
+.next-page-text {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.next-page-icon {
+  margin-left: 0.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s;
+}
+
+.next-page-link:hover .next-page-icon {
+  transform: translateX(0.25rem);
+}
+
+/* Docs menu container */
+.docs-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Converted from rem */
+  margin-top: 20px; /* Converted from rem */
+  padding-right: 0;
+  padding-bottom: 24px; /* Converted from rem */
+  width: 100%;
+  color: var(--foreground);
+  font-size: 15px; /* Increased to 15px */
+}
+
+/* Sublink component styling */
+.sublink {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  width: 100%;
+}
+
+.sublink-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sublink-title {
+  font-weight: 500;
+  font-size: 15px; /* Increased to 15px */
+  color: var(--foreground);
+}
+
+.sublink-toggle {
+  margin-left: auto;
+  margin-right: 0.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  color: var(--muted-foreground);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sublink-toggle:hover {
+  background-color: transparent;
+}
+
+.sublink-toggle-icon {
+  height: 0.9rem;
+  width: 0.9rem;
+}
+
+/* Properly hide screen reader only content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sublink-children {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 15px; /* Increased to 15px */
+  color: var(--foreground);
+  margin-left: 16px; /* Increased indentation for visual separation */
+  margin-top: 10px; /* Converted to px */
+  gap: 12px; /* Converted to px */
+}
+
+.sublink-children.nested {
+  padding-left: 16px;
+  border-left-width: 1px;
+  margin-left: 4px;
+}
+
+/* Navigation links container */
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+/* Nested navigation section */
+.nav-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+}
+
+/* Nav item with children */
+.nav-item-parent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+}
+
+/* Nav item styling */
+.nav-item {
+  padding: 4px 0;
+  font-size: 15px;
+}

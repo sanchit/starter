@@ -1,0 +1,120 @@
+---
+title: Installation - Code Examples
+description: Code examples for the Installation section.
+---
+
+```bash 
+git init
+```
+```bash 
+git add .
+```
+```bash 
+git commit -m "init commit"
+```
+```bash 
+git remote add origin git@github.com:jynfairchild/danger_docs.git
+```
+```bash 
+git branch -M main
+```
+```bash 
+git push -u origin main
+```
+
+## Next.js Configuration
+
+```javascript showLineNumbers
+// next.config.mjs
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['images.unsplash.com', 'cdn.example.com'],
+    formats: ['image/avif', 'image/webp'],
+  },
+  experimental: {
+    serverActions: true,
+  },
+  async redirects() {
+    return [
+      {
+        source: '/old-page',
+        destination: '/new-page',
+        permanent: true,
+      },
+    ];
+  },
+};
+
+export default nextConfig;
+```
+
+## Environment Variables
+
+```bash showLineNumbers
+# .env.local example
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
+NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="your-secret-here"
+NEXT_PUBLIC_API_URL="https://api.example.com"
+```
+
+## Package.json Scripts
+
+```json showLineNumbers
+{
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "e2e": "cypress open",
+    "e2e:headless": "cypress run"
+  }
+}
+```
+
+My favorite nvim remaps
+
+```lua showLineNumbers 
+-- visual move up and down, highlight brakets
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+-- Window resize in normal mode with incremental changes
+vim.keymap.set("t", "<kMinus>", "<C-\\><C-n>:resize -8<CR>i")
+vim.keymap.set("t", "<kPlus>", "<C-\\><C-n>:resize +8<CR>i")
+vim.keymap.set("t", "<k7>", "<C-\\><C-n>:vertical resize +10<CR>i")
+vim.keymap.set("t", "<k8>", "<C-\\><C-n>:vertical resize -10<CR>i")
+vim.keymap.set("n", "<k7>", ":vertical resize -10<CR>")
+vim.keymap.set("n", "<k8>", ":vertical resize +10<CR>")
+vim.keymap.set("n", "<kMinus>", ":resize -8<CR>")
+vim.keymap.set("n", "<kPlus>", ":resize +8<CR>")
+
+-- terminal
+vim.keymap.set("n", "<leader>th", function() require("nvterm.terminal").toggle('horizontal') end)
+vim.keymap.set("n", "<leader>tv", function() require("nvterm.terminal").toggle('vertical') end)
+vim.keymap.set("n", "<f6>", "<C-w><Right><C-w><Down><Up>")
+vim.keymap.set("t", "<f5>", "<C-\\><C-n><C-w><Left>")
+
+-- Mapping to run reload maps
+vim.keymap.set('n', '<leader>;r', function()
+  vim.cmd('luafile ~/.config/nvim/lua/dangercat/remap.lua')
+end, { noremap = true, silent = false, desc = "reload remaps" })
+
+-- Mapping to run reload sets
+vim.keymap.set('n', '<leader>;s', function()
+  vim.cmd('luafile ~/.config/nvim/lua/dangercat/set.lua')
+end, { noremap = true, silent = false, desc = "reload sets" })
+
+-- Mapping to run PackerSync
+vim.keymap.set('n', '<leader>;p', function()
+  vim.cmd [[:PackerSync]]
+end, { noremap = true, silent = false, desc = "PackerSync" })
+
+```
+

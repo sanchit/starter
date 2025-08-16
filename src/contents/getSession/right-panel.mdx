@@ -1,0 +1,126 @@
+---
+title: getSession - Code Examples
+description: Code examples for the getSession server action.
+---
+
+## Server Action Implementation
+
+```typescript showLineNumbers
+// app/actions/auth.ts
+'use server'
+
+import { cookies } from 'next/headers';
+import { verify } from 'jsonwebtoken';
+
+interface SessionUser {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+}
+
+interface Session {
+  user: SessionUser;
+  expires: Date;
+}
+
+export async function getSession(): Promise<Session | null> {
+  const token = cookies().get('token')?.value;
+  
+  if (!token) {
+    return null;
+  }
+  
+  try {
+    const secret = process.env.JWT_SECRET;
+    
+    if (!secret) {
+      throw new Error('JWT_SECRET is not defined');
+    }
+    
+    const decoded = verify(token, secret) as {
+      sub: string;
+      email: string;
+      name: string;
+      role: string;
+      exp: number;
+    };
+    
+    return {
+      user: {
+        id: decoded.sub,
+        email: decoded.email,
+        name: decoded.name,
+        role: decoded.role,
+      },
+      expires: new Date(decoded.exp * 1000),
+    };
+  } catch (error) {
+    // Token is invalid or expired
+    cookies().delete('token');
+    return null;
+  }
+}
+```
+
+## Client Component Usage
+
+```tsx showLineNumbers
+// app/components/ProfileSection.tsx
+'use client'
+
+import { useEffect, useState } from 'react';
+import { getSession } from '@/app/actions/auth';
+
+interface SessionData {
+  user: {
+    id: string;
+    email: string;
+    name: string;
+    role: string;
+  };
+  expires: Date;
+}
+
+export default function ProfileSection() {
+  const [session, setSession] = useState<SessionData | null>(null);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    async function fetchSession() {
+      try {
+        const sessionData = await getSession();
+        setSession(sessionData);
+      } catch (error) {
+        console.error('Failed to fetch session:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchSession();
+  }, []);
+  
+  if (loading) {
+    return <div className="p-4">Loading...</div>;
+  }
+  
+  if (!session) {
+    return <div className="p-4">Please log in to view your profile.</div>;
+  }
+  
+  return (
+    <div className="p-4 border rounded-lg bg-card">
+      <h2 className="text-xl font-bold mb-4">Your Profile</h2>
+      <div className="space-y-2">
+        <p><strong>Name:</strong> {session.user.name}</p>
+        <p><strong>Email:</strong> {session.user.email}</p>
+        <p><strong>Role:</strong> {session.user.role}</p>
+        <p className="text-sm text-muted-foreground">
+          Session expires: {new Date(session.expires).toLocaleString()}
+        </p>
+      </div>
+    </div>
+  );
+}
+```

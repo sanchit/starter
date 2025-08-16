@@ -1,0 +1,53 @@
+---
+title: Git 
+description: Making a repo from scratch
+---
+
+When ever I start a new repo, I swear getting github to push the directory from my local is a pain
+
+1. Go to gitub, make a fresh repo, dont add a readme, dont add a license, you can add those things later
+
+2. Uplaod local directory as first commit 
+
+- Follow steps 2.1 - 2.6 in right side panel
+
+
+## Readme Template 
+
+You can configure the project by editing the configuration files:
+
+```typescript showLineNumbers
+// next.config.mjs
+const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  images: {
+    domains: ['images.unsplash.com'],
+  },
+};
+
+export default nextConfig;
+```
+
+## What license to pick 
+
+Here's an example of using components from the project:
+
+```jsx showLineNumbers
+// Example component usage
+import { Button } from '@/components/ui/button';
+
+export default function MyComponent() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-4">Welcome to the App</h1>
+      <Button variant="default">Get Started</Button>
+      <Button variant="outline" className="ml-2">Learn More</Button>
+    </div>
+  );
+}
+```
+
+## Additional Information
+
+For more detailed instructions and troubleshooting tips, refer to our [documentation](#).

@@ -1,0 +1,113 @@
+---
+title: "Article MDX Feature Set"
+date: "2025-08-13"
+slug: "example"
+author: "Jyn Fairchild"
+heroImage: "auto.png"
+heroMobileImage: "mobile-auto.png"
+heroImageAlt: "Test article hero image showcasing MDX features"
+---
+
+import { ResponsiveImage } from '../components/ResponsiveImage';
+import grid from '../assets/images/articles/grid.png';
+
+
+You can also use `inline code`
+
+- Pull quotes with three different styles
+- Separate hero images for desktop and mobile
+  - And this one too
+    - Even deeper nesting works
+
+1. Start with a compelling title
+2. Add metadata in the frontmatter
+3. Choose appropriate hero images
+
+This pull quote uses an h4 tag, extends 160px to the left, and ends halfway across the page.
+Perfect for supporting quotes or interesting details.
+
+---
+
+# JavaScript Example
+
+```javascript
+// Example React component
+const ArticleCard = ({ title, date, excerpt }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <article
+      className="article-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <h3>{title}</h3>
+      <time dateTime={date}>{formatDate(date)}</time>
+      <p>{excerpt}</p>
+      {isHovered && <span>Read more →</span>}
+    </article>
+  );
+};
+```
+
+---
+
+# Images and Media
+
+You can import and use images within your article. Here's an example of an inline image:
+
+<img src={grid} alt="Example grid layout from Figma showing Auto Layout controls" />
+<ResponsiveImage
+  desktop={flower}
+  mobile={flower}
+  alt="Flower with custom styling"
+  className="my-custom-class"
+/>
+
+Images can be placed anywhere in your article and will be responsive. The alt text is important for accessibility.
+
+---
+
+# Links and References
+
+You can include [inline links](https://example.com) to external resources. You can also link to [internal pages](/design-philosophy) or specific [article sections](#code-blocks-and-syntax-highlighting).
+
+For more technical documentation, you might want to link to:
+- [MDX Documentation](https://mdxjs.com/)
+- [React Documentation](https://react.dev/)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+---
+
+# Tables
+
+While not as common, you can also create tables in MDX:
+
+| Feature | Description | Usage |
+|---------|-------------|-------|
+| Pull Quotes | Large, emphasized text | Use h2, h3, or h4 |
+| Code Blocks | Syntax highlighted code | Triple backticks with language |
+| Images | Responsive images | Import and use img tag |
+| Lists | Ordered and unordered | Standard markdown syntax |
+
+---
+
+## Blockquotes
+
+> Sometimes you want to quote someone else or highlight important information. Blockquotes are perfect for this. They stand out from regular text and draw the reader's attention.
+>
+> You can even have multiple paragraphs in a blockquote.
+
+---
+
+# Centered Title (h1)
+---
+## Centered Pull Quote (h2)
+---
+### Right-Aligned Pull Quote (h3)
+---
+#### Left-Aligned Pull Quote (h4)
+---
+
+
+

@@ -1,0 +1,196 @@
+---
+title: getToken - Code Examples
+description: Code examples for the getToken server action.
+---
+
+## Server Action Implementation
+
+```typescript showLineNumbers
+// app/actions/auth.ts
+'use server'
+
+import { cookies } from 'next/headers';
+import { sign } from 'jsonwebtoken';
+import { z } from 'zod';
+
+// Validate user credentials
+const credentialsSchema = z.object({
+  email: z.string().email('Invalid email format'),
+  password: z.string().min(8, 'Password must be at least 8 characters'),
+});
+
+// User data returned from database
+interface UserData {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  passwordHash: string;
+}
+
+export async function getToken(formData: FormData) {
+  // Parse and validate form data
+  const rawCredentials = {
+    email: formData.get('email'),
+    password: formData.get('password'),
+  };
+  
+  const validationResult = credentialsSchema.safeParse(rawCredentials);
+  
+  if (!validationResult.success) {
+    return { error: 'Invalid credentials format' };
+  }
+  
+  const { email, password } = validationResult.data;
+  
+  try {
+    // In a real implementation, you would:
+    // 1. Look up the user in your database
+    // 2. Verify the password hash
+    // 3. Generate a token if authentication succeeds
+    
+    // This is a simplified example - replace with your actual authentication logic
+    const user = await getUserByEmail(email);
+    
+    if (!user || !(await verifyPassword(password, user.passwordHash))) {
+      return { error: 'Invalid email or password' };
+    }
+    
+    // Generate JWT token
+    const token = generateToken(user);
+    
+    // Set cookie
+    cookies().set({
+      name: 'token',
+      value: token,
+      httpOnly: true,
+      path: '/',
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 60 * 60 * 24, // 24 hours
+      sameSite: 'strict',
+    });
+    
+    return { success: true };
+  } catch (error) {
+    console.error('Authentication error:', error);
+    return { error: 'Authentication failed' };
+  }
+}
+
+// Helper function to generate JWT token
+function generateToken(user: UserData): string {
+  const secret = process.env.JWT_SECRET;
+  
+  if (!secret) {
+    throw new Error('JWT_SECRET is not defined');
+  }
+  
+  return sign(
+    {
+      sub: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+    },
+    secret,
+    { expiresIn: '24h' }
+  );
+}
+
+// Example database functions (implement these with your actual database)
+async function getUserByEmail(email: string): Promise<UserData | null> {
+  // Replace with your database query
+  return null;
+}
+
+async function verifyPassword(password: string, hash: string): Promise<boolean> {
+  // Replace with your password verification (bcrypt, etc.)
+  return false;
+}
+```
+
+## Login Form Component
+
+```tsx showLineNumbers
+// app/components/LoginForm.tsx
+'use client'
+
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { getToken } from '@/app/actions/auth';
+
+export default function LoginForm() {
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
+  
+  async function handleSubmit(formData: FormData) {
+    setIsLoading(true);
+    setError(null);
+    
+    try {
+      const result = await getToken(formData);
+      
+      if ('error' in result) {
+        setError(result.error);
+      } else {
+        router.push('/dashboard');
+        router.refresh(); // Refresh to update UI based on new auth state
+      }
+    } catch (err) {
+      setError('An unexpected error occurred');
+      console.error(err);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+  
+  return (
+    <div className="w-full max-w-md mx-auto p-6 bg-card rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6">Log In</h2>
+      
+      {error && (
+        <div className="mb-4 p-3 bg-destructive/15 border border-destructive rounded text-sm text-destructive">
+          {error}
+        </div>
+      )}
+      
+      <form action={handleSubmit} className="space-y-4">
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium">
+            Email
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            className="w-full p-2 border rounded-md"
+          />
+        </div>
+        
+        <div className="space-y-2">
+          <label htmlFor="password" className="block text-sm font-medium">
+            Password
+          </label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            className="w-full p-2 border rounded-md"
+          />
+        </div>
+        
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full py-2 px-4 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
+        >
+          {isLoading ? 'Logging in...' : 'Log In'}
+        </button>
+      </form>
+    </div>
+  );
+}
+```
