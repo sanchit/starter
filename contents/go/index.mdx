@@ -1,0 +1,174 @@
+---
+title: Go Basics
+description: Learn the fundamental concepts of Go programming language
+---
+
+# Go Basics
+
+Go (often referred to as Golang) is a statically typed, compiled programming language designed at Google. It's known for its simplicity, efficiency, and excellent support for concurrent programming.
+
+## Why Go?
+
+Go was created to address common criticisms of other languages while maintaining their positive characteristics:
+
+- **Simple and readable** - Clean syntax that's easy to learn
+- **Fast compilation** - Compiles to machine code quickly
+- **Garbage collected** - Automatic memory management
+- **Built-in concurrency** - Goroutines and channels for concurrent programming
+- **Standard library** - Rich set of built-in packages
+
+## Installing Go
+
+To get started with Go, you'll need to install it on your system:
+
+### macOS
+```bash
+brew install go
+```
+
+### Linux
+```bash
+wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.21.0.linux-amd64.tar.gz
+export PATH=$PATH:/usr/local/go/bin
+```
+
+### Windows
+Download the installer from [go.dev](https://go.dev/dl/) and run it.
+
+## Your First Go Program
+
+Create a file called `hello.go`:
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+```
+
+Run it with:
+```bash
+go run hello.go
+```
+
+## Basic Syntax
+
+### Variables
+
+Go has several ways to declare variables:
+
+```go
+// Explicit type declaration
+var name string = "John"
+var age int = 30
+
+// Type inference
+var city = "New York"  // Go infers string type
+
+// Short declaration (only inside functions)
+country := "USA"       // := declares and initializes
+```
+
+### Data Types
+
+Go has several built-in data types:
+
+```go
+// Basic types
+var b bool = true
+var s string = "hello"
+var i int = 42
+var f float64 = 3.14
+
+// Composite types
+var arr [5]int                    // Array
+var slice []int                   // Slice
+var m map[string]int             // Map
+var ch chan int                  // Channel
+```
+
+### Functions
+
+Functions are first-class citizens in Go:
+
+```go
+// Basic function
+func add(x int, y int) int {
+    return x + y
+}
+
+// Multiple return values
+func swap(x, y string) (string, string) {
+    return y, x
+}
+
+// Named return values
+func split(sum int) (x, y int) {
+    x = sum * 4 / 9
+    y = sum - x
+    return  // "naked" return
+}
+```
+
+## Control Structures
+
+### If Statements
+
+```go
+if x > 0 {
+    fmt.Println("x is positive")
+} else if x < 0 {
+    fmt.Println("x is negative")
+} else {
+    fmt.Println("x is zero")
+}
+
+// If with initialization
+if v := math.Pow(x, n); v < limit {
+    return v
+}
+```
+
+### Loops
+
+Go has only one looping construct: `for`
+
+```go
+// Traditional for loop
+for i := 0; i < 10; i++ {
+    fmt.Println(i)
+}
+
+// While-style loop
+for x < 100 {
+    x += x
+}
+
+// Infinite loop
+for {
+    // Break or return to exit
+}
+
+// Range loop
+numbers := []int{1, 2, 3, 4, 5}
+for index, value := range numbers {
+    fmt.Printf("Index: %d, Value: %d\n", index, value)
+}
+```
+
+## Next Steps
+
+Now that you understand the basics of Go, you're ready to explore more advanced topics:
+
+- Structs and methods
+- Interfaces
+- Error handling
+- Goroutines and concurrency
+- Package management
+- Testing
+
+Go's simplicity makes it easy to learn, but it's powerful enough to build large-scale applications. Keep practicing and exploring the standard library!

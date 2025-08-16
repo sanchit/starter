@@ -1,0 +1,82 @@
+/* =========================================
+   Home Page Styles
+   ========================================= */
+
+/* Home page container */
+.home-container {
+  display: flex;
+  min-height: 88vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .home-container {
+    min-height: 91vh;
+  }
+}
+
+.home-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .home-title {
+    font-size: 4.5rem;
+  }
+}
+
+.home-subtitle {
+  font-size: 1.875rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .home-subtitle {
+    font-size: 3rem;
+  }
+}
+
+.home-description {
+  margin-bottom: 2rem;
+  max-width: 800px;
+  color: var(--muted-foreground);
+}
+
+@media (min-width: 640px) {
+  .home-description {
+    font-size: 1.025rem;
+  }
+}
+
+/* Error page */
+.error-container {
+  min-height: 99vh;
+  padding: 2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.error-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.error-message {
+  color: var(--muted-foreground);
+}
+
+/* Get started button */
+.get-started-button {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  font-weight: 500;
+}
