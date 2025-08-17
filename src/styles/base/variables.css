@@ -41,6 +41,20 @@
   --sidebar-border: hsl(220, 13.04%, 90.98%);
   --sidebar-ring: hsl(217.22, 91.22%, 59.80%);
 
+  /* Portfolio colors */
+  --color-design-work: #CD594F;
+  --color-design-philosophy: #D6AF78;
+  --color-who-am-i: #9F78D6;
+  --color-dark-bg: #0C0C0C;
+  --color-dark-bg-secondary: #141414;
+  --color-text-primary: rgba(255, 255, 255, 0.9);
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-white: #FFFFFF;
+  --color-gray-medium: rgba(255, 255, 255, 0.1);
+  --color-gray-darker: rgba(255, 255, 255, 0.2);
+  --color-border-secondary: rgba(255, 255, 255, 0.1);
+  --color-border-hover: rgba(255, 255, 255, 0.3);
+
   /* Typography */
   --font-sans: Inter, sans-serif;
   --font-serif: Source Serif 4, serif;

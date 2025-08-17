@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArticleMetadata } from '../types';
-import './ArticleLayout.css';
 
 interface ArticleLayoutProps {
     metadata: ArticleMetadata;

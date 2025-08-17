@@ -136,9 +136,9 @@
   opacity: 0.8;
 }
 
-.section-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+.navbar .section-icon {
+  width: 1rem;
+  height: 1rem;
   color: var(--muted-foreground);
 }
 

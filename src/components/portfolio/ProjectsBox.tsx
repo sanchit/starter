@@ -1,6 +1,6 @@
+'use client';
+
 import { FC } from 'react';
-import linkIcon from '../../assets/symbols/link.svg';
-import './ProjectsBox.css';
 
 interface ProjectLink {
     type: 'github' | 'figma' | 'website' | 'demo';
@@ -23,9 +23,19 @@ export const ProjectsBox: FC<ProjectsBoxProps> = ({
     className = '',
     accentColor
 }) => {
-    const getLinkIcon = () => {
-        // For now using the same link icon, but can be expanded
-        return linkIcon;
+    const getLinkIcon = (type: string) => {
+        switch (type) {
+            case 'github':
+                return '→';
+            case 'figma':
+                return '→';
+            case 'website':
+                return '→';
+            case 'demo':
+                return '→';
+            default:
+                return '→';
+        }
     };
 
     const getLinkLabel = (link: ProjectLink) => {
@@ -65,20 +75,17 @@ export const ProjectsBox: FC<ProjectsBoxProps> = ({
                         {links.map((link, index) => (
                             <a
                                 key={index}
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                                href="#"
+                                onClick={(e) => e.preventDefault()}
                                 className={`projects-box-link projects-box-link-${link.type}`}
                                 style={accentColor ? { 
                                     borderColor: accentColor,
                                     '--hover-bg': accentColor
                                 } as React.CSSProperties : undefined}
                             >
-                                <img 
-                                    src={getLinkIcon()} 
-                                    alt="" 
-                                    className="projects-box-link-icon" 
-                                />
+                                <span className="projects-box-link-icon">
+                                    {getLinkIcon(link.type)}
+                                </span>
                                 <span>{getLinkLabel(link)}</span>
                             </a>
                         ))}

@@ -31,7 +31,7 @@ export default function Home() {
       <div className="home-hero">
         <h1 className="home-title">Starter Templates</h1>
         <p className="home-subtitle">
-          Beautiful, functional templates for designers who code
+          Starter demos for your next project, built with Next.js
         </p>
       </div>
 
@@ -67,7 +67,7 @@ export default function Home() {
 
       <div className="home-footer">
         <p className="footer-text">
-          Each template is crafted with attention to detail, performance, and developer experience.
+          None of these projects are production-ready, but they are a great starting point for your next Next.js project.
         </p>
       </div>
     </div>

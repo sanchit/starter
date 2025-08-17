@@ -11,6 +11,46 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Geneva9.1";
+  src: url("/fonts/geneva-9-1.woff2") format("woff2"),
+       url("/fonts/geneva-9-1.woff") format("woff"),
+       url("/fonts/geneva-9-1.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gentium Book Basic";
+  src: url("/fonts/gentium-book-basic.regular.woff2") format("woff2"),
+       url("/fonts/gentium-book-basic.regular.woff") format("woff"),
+       url("/fonts/gentium-book-basic.regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gentium Book Basic";
+  src: url("/fonts/gentium-book-basic.italic.woff2") format("woff2"),
+       url("/fonts/gentium-book-basic.italic.woff") format("woff"),
+       url("/fonts/gentium-book-basic.italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "ChiKareGo2";
+  src: url("/fonts/ChiKareGo2.woff2") format("woff2"),
+       url("/fonts/ChiKareGo2.woff") format("woff"),
+       url("/fonts/ChiKareGo2.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   font-variant-ligatures: none;
 }
