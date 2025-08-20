@@ -6,9 +6,9 @@ import "@/styles/main.css";
 // Berkeley Mono Variable is loaded via the @font-face in typography.css
 
 export const metadata: Metadata = {
-  title: "Danger Docs",
+  title: "Starter",
   description:
-    "This comprehensive documentation template, crafted with Next.js and available as open-source, delivers a sleek and responsive design, tailored to meet all your project documentation requirements.",
+    "A versatile Next.js starter template combining documentation, portfolio, and blog capabilities. Features a comprehensive design system with custom typography, responsive layouts, and modular architecture.",
 };
 
 export default function RootLayout({
